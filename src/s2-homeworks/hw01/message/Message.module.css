@@ -1,9 +1,14 @@
 .message {
-
+display: flex;
+    flex-direction: row-reverse;
+    justify-content:flex-start;
 }
 
 .imageAndText {
-
+display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid #e0b496;
 }
 
 .imageAndText img {
@@ -15,6 +20,14 @@
 }
 
 .text {
+    display: flex;
+    width: 400px;
+    height: 70px;
+    border: 1px solid #234cdc;
+    background-color: #234cdc;
+    border-radius: 10px;
+    color: white;
+    word-break: break-all;
 
 }
 

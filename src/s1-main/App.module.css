@@ -1,11 +1,14 @@
 .App {
-    --header_height: 60px;
+    padding: 40px;
+    width: 80%;
+    border: 1px solid #e0b496;
+ margin: 0 auto;
+
 }
 
 .hw {
-
+    margin-top: 10px;
 }
 
 .hwTitle {
-
 }
