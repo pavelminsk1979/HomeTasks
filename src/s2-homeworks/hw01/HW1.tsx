@@ -3,7 +3,7 @@ import Message from './message/Message'
 import MessageSender from './message-sender/MessageSender'
 import s2 from '../../s1-main/App.module.css'
 import FriendMessage from './friend-message/FriendMessage'
-import avatar from './avatar.png'
+
 
 /*
 * 1 - описать тип MessageType
@@ -14,33 +14,42 @@ import avatar from './avatar.png'
 * */
 
 // нужно создать правильный тип вместо any
+type UserType = {
+    avatar:string
+    name:string
+}
+type TextType = {
+    text:string
+    time:string
+}
+
 export type MessageType = {
     id:number
-    user:any
-    message:any
+    user:UserType
+    message:TextType
 }
 
 // структуру объекта не менять
 export const message0: MessageType = {
     id: 0,
     user: {
-        avatar: avatar, // можно менять
-        name: 'Some Name',  // можно менять
+        avatar: 'https://abrakadabra.fun/uploads/posts/2021-12/1640722082_1-abrakadabra-fun-p-pank-eskizi-1.png', // можно менять
+        name: 'Тётя-Мотя',  // можно менять
     },
     message: {
-        text: 'some textsome textsome textsome textsome textsome textsome text', // можно менять
+        text: 'some text some       textsome textsome text some textsome text some textsome text some text some',
         time: '22:00', // можно менять
     },
 }
 export const friendMessage0: MessageType = {
     id: 100,
     user: {
-        avatar: avatar, // можно менять
-        name: 'Friend Name', // можно менять
+        avatar: 'https://fb.ru/misc/i/gallery/31654/3061574.jpg', // можно менять
+        name: 'Супер-Дед', // можно менять
     },
     message: {
-        text: 'зеркальное сообщение для тренировки css', // можно менять
-        time: '22:00', // можно менять
+        text: 'зеркальное сообщение для тренировки css повторяющееся непонятно зечем много-много-много-много раз', // можно менять
+        time: '22:05', // можно менять
     },
 }
 
