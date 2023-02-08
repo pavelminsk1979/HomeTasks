@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/HomeTasks/static/css/main.daca8984.css",
+    "main.js": "/HomeTasks/static/js/main.f62ec1e6.js",
+    "static/js/787.66cb4309.chunk.js": "/HomeTasks/static/js/787.66cb4309.chunk.js",
+    "index.html": "/HomeTasks/index.html",
+    "main.daca8984.css.map": "/HomeTasks/static/css/main.daca8984.css.map",
+    "main.f62ec1e6.js.map": "/HomeTasks/static/js/main.f62ec1e6.js.map",
+    "787.66cb4309.chunk.js.map": "/HomeTasks/static/js/787.66cb4309.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.daca8984.css",
+    "static/js/main.f62ec1e6.js"
+  ]
+}
