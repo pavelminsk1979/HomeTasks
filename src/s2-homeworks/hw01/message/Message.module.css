@@ -1,14 +1,14 @@
 .message {
-display: flex;
-    flex-direction: row-reverse;
-    justify-content:flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.frame{
+    display: flex;
+    align-items: flex-end;
 }
 
 .imageAndText {
-display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border: 1px solid #e0b496;
 }
 
 .imageAndText img {
@@ -20,15 +20,26 @@ display: flex;
 }
 
 .text {
-    display: flex;
-    width: 400px;
-    height: 70px;
+    width: 350px;
+    min-height: 70px;
     border: 1px solid #234cdc;
     background-color: #234cdc;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 10px;
     color: white;
-    word-break: break-all;
+}
 
+.big2In1 {
+    width: 25px;
+    height: 25px;
+    background-color: #234cdc;
+}
+
+.smal2In1 {
+    width: 25px;
+    height: 25px;
+    border: 1px solid white;
+    border-radius: 0px 0px 0px 60px;
+    background-color: white;
 }
 
 .text:after {
@@ -36,13 +47,18 @@ display: flex;
 }
 
 .name {
-
+    display: flex;
+    justify-content: flex-end;
 }
 
 .messageText {
-
+    word-wrap: break-word;
 }
 
+.timeCommon {
+margin-left: 94%;
+}
 .time {
-
+font-size: 13px;
+    font-weight: bold;
 }
