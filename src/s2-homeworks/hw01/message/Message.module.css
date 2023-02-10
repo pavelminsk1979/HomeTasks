@@ -53,6 +53,7 @@
 
 .messageText {
     word-wrap: break-word;
+    white-space: break-spaces;
 }
 
 .timeCommon {

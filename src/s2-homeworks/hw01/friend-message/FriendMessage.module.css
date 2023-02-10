@@ -53,7 +53,8 @@
 }
 
 .friendMessageText {
-  /*  word-wrap: break-word;*/
+    word-wrap: break-word;
+    white-space: break-spaces;
 }
 .friendTimeCommon {
 
