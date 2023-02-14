@@ -1,7 +1,6 @@
 .burgerMenuIcon {
-    background-color: #fc8c03;
-    margin-left: 10%;
-
+    margin-left: 16%;
+margin-top: 14px;
 }
 
 .header {
@@ -11,6 +10,7 @@
 }
 
 .headerH1 {
-    background-color: #fc8c03;
+    font-family: 'Montserrat';
+    font-style: normal;
     margin-left: 70%;
 }
