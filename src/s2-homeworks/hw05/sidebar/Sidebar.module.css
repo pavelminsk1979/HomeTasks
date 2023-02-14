@@ -1,22 +1,25 @@
 .sidebar {
     position: absolute;
-    width: 20%;
+    width: 270px;
     height: 100%;
     background-color: #f9f9fb;
 
 
 }
-
+.active {
+    color: #fc8c03;
+    text-decoration: none;
+}
 .sidebar.open {
 }
 
 .background {
+
 }
 .open{
     text-decoration: none;
     font-weight: bold;
     color: #0a54a0;
-
 }
 
 
