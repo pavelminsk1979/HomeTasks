@@ -44,6 +44,7 @@ const HW6 = () => {
                     <SuperButton id={'hw6-save'} onClick={save}>
                         Save to ls
                     </SuperButton>
+
                     <SuperButton
                         id={'hw6-restore'}
                         onClick={restore}

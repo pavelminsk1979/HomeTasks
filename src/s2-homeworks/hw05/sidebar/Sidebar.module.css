@@ -1,4 +1,10 @@
 .sidebar {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    background-color: #f9f9fb;
+
+
 }
 
 .sidebar.open {
@@ -6,8 +12,21 @@
 
 .background {
 }
+.open{
+    text-decoration: none;
+    font-weight: bold;
+    color: #0a54a0;
+
+}
+
 
 .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 30px;
+
 }
 
 .nav a {
@@ -19,6 +38,8 @@
 .nav a.active {
 }
 .close {
+  margin-left: 50%;
+    background-color: #fc8c03;
 }
 
 .close img {

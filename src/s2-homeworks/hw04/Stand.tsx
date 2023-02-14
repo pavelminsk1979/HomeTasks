@@ -24,6 +24,7 @@ const Stand = () => {
                 {/*инпут с ошибкой:*/}
                 <div>
                     <SuperInputText
+
                         id={'hw4-super-input-with-error'}
                         value={stateForAllInputs}
                         onChangeText={setValue}
@@ -49,7 +50,8 @@ const Stand = () => {
                 </div>
                 {/*красная кнопка:*/}
                 <div>
-                    <SuperButton id={'hw4-super-button-red'} xType={'red'}>
+                    <SuperButton id={'hw4-super-button-red'}
+                                 xType={'red'}>
                         Опастность
                     </SuperButton>
                 </div>

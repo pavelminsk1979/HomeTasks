@@ -6,6 +6,7 @@ import {PATH} from '../Pages'
 
 type PropsType = {
     handleOpen: () => void
+
 }
 
 export const Header: FC<PropsType> = ({handleOpen}) => {
@@ -31,7 +32,7 @@ export const Header: FC<PropsType> = ({handleOpen}) => {
                     onClick={handleOpen}
                     alt={'open menu'}
                 />
-                <h1>{pageName}</h1>
+                <h2 className={s.headerH1} >{pageName}</h2>
             </div>
         </>
     )
