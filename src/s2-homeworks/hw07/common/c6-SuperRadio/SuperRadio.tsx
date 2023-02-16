@@ -35,6 +35,7 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
     ...restProps
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+        onChangeOption&& onChangeOption(e.currentTarget.value)
         // делают студенты
     }
 
@@ -48,6 +49,10 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
                       id={id + '-input-' + o.id}
                       className={finalRadioClassName}
                       type={'radio'}
+                      name={name} /*чтобы из группы с одинаковым именем АКТИВНЫМ был только один элемент*/
+                      value={o.value} /*когда делаю клик и это значение попадает в ВЭЛЬЮ и далее буду использовать его
+                        в  e.currentTarget.value*/
+                      checked={o.value===value}/*один из группы активный-с точкой---тот который будет ТРУЕ в фигурных скобках*/
                       // name, checked, value делают студенты
 
                       onChange={onChangeCallback}
