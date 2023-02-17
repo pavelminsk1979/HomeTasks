@@ -35,7 +35,9 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
     ...restProps
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        onChangeOption&& onChangeOption(e.currentTarget.value)
+        onChangeOption&& onChangeOption(+(e.currentTarget.value))
+       /* без плюса будет передаватся значение СТРОКА ЕДЕНИЦА ИЛИ ДВОЙКА  и так как это строка то не будет работать отображение точки---потомучто надо получать для отображения ЗНАЧЕНИЕ ТРУ из выражения checked={o.id===value}
+        а строка сравниватся с  числом  всегда будет  ФАЛСЕ*/
         // делают студенты
     }
 
@@ -50,9 +52,9 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
                       className={finalRadioClassName}
                       type={'radio'}
                       name={name} /*чтобы из группы с одинаковым именем АКТИВНЫМ был только один элемент*/
-                      value={o.value} /*когда делаю клик и это значение попадает в ВЭЛЬЮ и далее буду использовать его
+                      value={o.id} /*когда делаю клик и это значение попадает в ВЭЛЬЮ и далее буду использовать его
                         в  e.currentTarget.value*/
-                      checked={o.value===value}/*один из группы активный-с точкой---тот который будет ТРУЕ в фигурных скобках*/
+                      checked={o.id===value}/*один из группы активный-с точкой отображенной внутри---тот который будет ТРУЕ в фигурных скобках----в стартовом стэйте стартовое значение ЦИФРА ОДИН  и при перезагрузке приложения отобразится точка внутри кружка для первого элемента из списка*/
                       // name, checked, value делают студенты
 
                       onChange={onChangeCallback}

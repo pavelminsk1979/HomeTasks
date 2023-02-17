@@ -28,7 +28,7 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
                   id={'hw7-option-' + o.id}
                   className={s.option}
                   key={o.id}
-                  value={o.value}
+                  value={o.id}
               >
                   {o.value}
               </option>
@@ -36,7 +36,9 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
         : [] // map options with key
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChangeOption&& onChangeOption(e.currentTarget.value)
+        onChangeOption&& onChangeOption(+(e.currentTarget.value))
+        /* без плюса будет передаватся значение СТРОКА ЕДЕНИЦА ИЛИ ДВОЙКА  и так как это строка то не будет работать отображение точки---потомучто надо получать для отображения ЗНАЧЕНИЕ ТРУ из выражения checked={o.id===value}
+       а строка сравниватся с  числом  всегда будет  ФАЛСЕ*/
         // делают студенты
     }
 
