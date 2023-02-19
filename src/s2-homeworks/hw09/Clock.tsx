@@ -1,79 +1,120 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SuperButton from '../hw04/common/c2-SuperButton/SuperButton'
 import {restoreState} from '../hw06/localStorage/localStorage'
 import s from './Clock.module.css'
 
 function Clock() {
-    const [timerId, setTimerId] = useState<number | undefined>(undefined)
+    const [timerId, setTimerId] = useState<any>(undefined)
     // for autotests // не менять // можно подсунуть в локалСторэдж нужную дату, чтоб увидеть как она отображается
     const [date, setDate] = useState<Date>(new Date(restoreState('hw9-date', Date.now())))
-    const [show, setShow] = useState<boolean>(false)
+    const [goWatch, setGoWatch] = useState<boolean>(false)
+    const [showData,setShowData]=useState(false)
+
+    useEffect(() => {
+        if(goWatch){
+            const intervalId=setInterval(() => {
+                setDate(new Date())
+            }, 1000);
+            setTimerId(intervalId)
+        }
+
+        return()=>{clearInterval(timerId)}
+    }, [goWatch])
 
     const start = () => {
-        // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
-        // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
-
+        setGoWatch(true)
+        // (https://learn.javascript.ru/settimeout-setinterval#setinterval)
     }
 
     const stop = () => {
-        // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
-
+        clearInterval(timerId)
+        setGoWatch(false)
     }
 
-    const onMouseEnter = () => { // пишут студенты // показать дату если наведена мышка
+    const onMouseMove = () => {setShowData(true)}
+    const onMouseOut = () => {setShowData(false)}
 
+    //  (https://learn.javascript.ru/intl#intl-datetimeformat)
+
+    let weekDay = 'Monday'
+    if (date.getDay() === 2) {
+        weekDay = 'Thuesday'
     }
-    const onMouseLeave = () => { // пишут студенты // спрятать дату если мышка не наведена
-
+    if (date.getDay() === 3) {
+        weekDay = 'Wednesday'
+    }
+    if (date.getDay() === 4) {
+        weekDay = 'Thursday'
+    }
+    if (date.getDay() === 5) {
+        weekDay = 'Friday'
+    }
+    if (date.getDay() === 6) {
+        weekDay = 'Saturday'
+    }
+    if (date.getDay() === 7) {
+        weekDay = 'Sanday'
     }
 
-    const stringTime = 'date->time' || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
-    // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
-    const stringDay = 'date->day' || <br/> // пишут студенты
-    const stringMonth = 'date->month' || <br/> // пишут студенты
+
+
+    const housre = date.getHours()<10
+    ?'0'+date.getHours()
+        :date.getHours()
+
+    const minuts = date.getMinutes()<10
+    ?'0'+date.getMinutes()
+        :date.getMinutes()
+
+    const seconds = date.getSeconds()<10
+    ?'0'+date.getSeconds()
+        :date.getSeconds()
+
+
 
     return (
         <div className={s.clock}>
             <div
                 id={'hw9-watch'}
-                className={s.watch}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-            >
-                <span id={'hw9-day'}>{stringDay}</span>,{' '}
+                className={s.watch}>
+
+                <span id={'hw9-day'}>{weekDay}</span>,{' '}
                 <span id={'hw9-time'}>
-                    <strong>{stringTime}</strong>
+                    <strong
+                        onMouseMove={onMouseMove}
+                             onMouseOut={onMouseOut}>
+                           <span>{housre}</span>
+                                    : <span>{minuts}</span>
+                                    : <span>{seconds}</span>
+                    </strong>
                 </span>
             </div>
+            <div>
+                {showData
+                ? <div>
+                        <span>{date.getDate()}</span>
+                        .<span>{date.getMonth()+1}</span>
+                        .<span>{date.getFullYear()}</span>
 
-            <div id={'hw9-more'}>
-                <div className={s.more}>
-                    {show ? (
-                        <>
-                            <span id={'hw9-month'}>{stringMonth}</span>,{' '}
-                            <span id={'hw9-date'}>{stringDate}</span>
-                        </>
-                    ) : (
-                        <>
-                            <br/>
-                        </>
-                    )}
-                </div>
+                        <span></span>
+                    </div>
+
+                    : <br/>
+                }
             </div>
 
             <div className={s.buttonsContainer}>
                 <SuperButton
                     id={'hw9-button-start'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер запущен
+                    disabled={goWatch}
                     onClick={start}
                 >
                     start
                 </SuperButton>
                 <SuperButton
                     id={'hw9-button-stop'}
-                    disabled={true} // пишут студенты // задизэйблить если таймер не запущен
+                    disabled={!goWatch}
                     onClick={stop}
                 >
                     stop

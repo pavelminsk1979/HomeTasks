@@ -21,3 +21,8 @@
     flex-direction: column;
     gap: 36px;
 }
+.test {
+    background-color: yellow;
+    width: 150px;
+    height: 100px;
+}
