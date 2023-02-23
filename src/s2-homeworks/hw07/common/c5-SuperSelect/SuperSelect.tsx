@@ -36,10 +36,12 @@ const SuperSelect: React.FC<SuperSelectPropsType> = ({
         : [] // map options with key
 
     const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-        onChangeOption&& onChangeOption(+(e.currentTarget.value))
+        onChangeOption && onChangeOption(+(e.currentTarget.value))
         /* без плюса будет передаватся значение СТРОКА ЕДЕНИЦА ИЛИ ДВОЙКА  и так как это строка то не будет работать отображение точки---потомучто надо получать для отображения ЗНАЧЕНИЕ ТРУ из выражения checked={o.id===value}
        а строка сравниватся с  числом  всегда будет  ФАЛСЕ*/
         // делают студенты
+
+       /* ИЗ ДРУГОЙ КОМПОНЕНТЫ НАДО ПЕРЕДОВАТЬ ИМЕННО onChangeOption  А НЕ onChange---ТАК СФОРМУЛИРОВАНА ЛОГИКА ВНУТРИ ЭТОЙ УНИВЕРСАЛЬНОЙ КОМПОНЕТЫ ---ИМЕННО ОБРАБАТЫВАЕТСЯ ТО ЧТО ПРИШЛО В onChangeOption ИЗ ДРУГИХ КОМПОНЕНТ...ЕСЛИ ИЗ ДРУГИХ КОМПОНЕНТ ПЕРЕДАВАТЬ onChange  -ТО И ЛОГИКУ НАДО ДОПИСЫВАТЬ ---onChange={onChangeCallback} ЭТО ПРОПИСАНО НО ВНУТРИ ФУНКЦИИ onChangeCallback НА ДО ПРОПИСАТЬ ЛОГИКУ ТОГО onChange КОТОРЫЙ В ПРОПСАХ ПРИХОДИТ ИЗ ДРУГОЙ КОМПОНЕНТЫ И ТОГДА БУДЕТ РАБОТАТЬ*/
     }
 
     const finalSelectClassName = s.select + (className ? ' ' + className : '')
