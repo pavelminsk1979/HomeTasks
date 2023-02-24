@@ -27,13 +27,27 @@ const getTechs = (find: string) => {
 const HW14 = () => {
     const [find, setFind] = useState('')
     const [isLoading, setLoading] = useState(false)
+
+
+
     const [searchParams, setSearchParams] = useSearchParams()
+
+
+
+    /*  useSearchParams() это хук он возвращает обьект-searchParams*/
     const [techs, setTechs] = useState<string[]>([])
 
     const sendQuery = (value: string) => {
         setLoading(true)
         getTechs(value)
             .then((res) => {
+                /*             ЗЧЕМ ЭТО УСЛОВИЕ?*/
+                if (res) {
+                    /*   список с сервера приходит и тут я его закидываю чтоб он на экране отобразился */
+                    setTechs(res.data.techs)
+                }
+                setLoading(false)
+                /* setTechs(res)*/
                 // делает студент
 
                 // сохранить пришедшие данные
@@ -42,10 +56,17 @@ const HW14 = () => {
             })
     }
 
+
+
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
+        const findQuery: { find?: string } = value ? {find: value} : {}
 
+
+        const params = Object.fromEntries(searchParams)   //searchParams ===  {find: '1313, test: 1000, age: 10}
+
+        setSearchParams({...params, ...findQuery})
         // добавить/заменить значение в квери урла
         // setSearchParams(
 
@@ -54,6 +75,7 @@ const HW14 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
+        /* Метод Object. fromEntries() преобразует список пар ключ-значение в объект*/
         sendQuery(params.find || '')
         setFind(params.find || '')
     }, [])
