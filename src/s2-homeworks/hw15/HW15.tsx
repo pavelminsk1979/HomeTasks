@@ -5,6 +5,7 @@ import axios from 'axios'
 import SuperPagination from './common/c9-SuperPagination/SuperPagination'
 import {useSearchParams} from 'react-router-dom'
 import SuperSort from './common/c10-SuperSort/SuperSort'
+import {Loader} from "../hw10/Loader";
 
 /*
 * 1 - дописать SuperPagination
@@ -30,6 +31,7 @@ type ParamsType = {
 const getTechs = (params: ParamsType) => {
     return axios
         .get<{ techs: TechType[], totalCount: number }>(
+            /*можно видеть что ожидаю от сервера techs и totalCount---тоесть две сущности*/
             'https://incubator-personal-page-back.herokuapp.com/api/3.0/homework/test3',
             {params}
         )
@@ -51,21 +53,29 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if (res) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
             })
+        setLoading(false)
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
+        setPage(newPage)
+        setCount(newCount)
         // делает студент
+        const pageQuery = newPage !== 1 ? {page: newPage} : {}
 
-        // setPage(
-        // setCount(
+        const countQuery = newCount !== 4 ? {count: newCount} : {}
+        const {count, page, ...lastQueries} = Object.fromEntries(searchParams)
+        const allQuery = {...pageQuery, ...countQuery, ...lastQueries}
 
-        // sendQuery(
+        sendQuery(allQuery)
+
+        // @ts-ignore
+        setSearchParams(allQuery)
+        //sendQuery()
         // setSearchParams(
 
         //
@@ -73,14 +83,20 @@ const HW15 = () => {
 
     const onChangeSort = (newSort: string) => {
         // делает студент
+        setSort(newSort)
+        setPage(1)
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        const sortQuery = newSort !== '' ? {sort: newSort} : {}
 
-        // sendQuery(
-        // setSearchParams(
+        const {sort, page, ...lastQueries} = Object.fromEntries(searchParams)
 
-        //
+
+        const allQuery = {...sortQuery, ...lastQueries}
+
+        sendQuery(allQuery)
+
+        // @ts-ignore
+        setSearchParams(allQuery)
     }
 
     useEffect(() => {
@@ -107,7 +123,7 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}><Loader/></div>}
 
                 <SuperPagination
                     page={page}

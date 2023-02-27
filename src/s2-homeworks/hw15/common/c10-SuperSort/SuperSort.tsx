@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 // добавить в проект иконки и импортировать
 const downIcon = '[\\/]'
@@ -7,14 +7,18 @@ const noneIcon = '[--]'
 
 export type SuperSortPropsType = {
     id?: string
-    sort: string
+    sort: string /* первоначально useState('')*/
     value: string
     onChange: (newSort: string) => void
 }
 
 export const pureChange = (sort: string, down: string, up: string) => {
     // пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
-    return up // исправить
+    return sort === down
+        ? up
+        : sort === up
+            ? ''
+            : down
 }
 
 const SuperSort: React.FC<SuperSortPropsType> = (
